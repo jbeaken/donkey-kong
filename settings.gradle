@@ -1,0 +1,3 @@
+rootProject.name = 'donkey-kong'
+
+include(['kong-containers'])
