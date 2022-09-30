@@ -1,0 +1,88 @@
+openapi: 3.0.2
+info:
+  contact:
+    email: me@kennethreitz.org
+    url: https://kennethreitz.org
+  description: A simple HTTP Request & Response Service.
+  title: httpbin.org
+  version: 0.9.3
+servers:
+  - url: https://httpbin.org
+paths:
+  /anything:
+    delete:
+      operationId: deleteAnythingRoot
+      responses:
+        "200":
+          description: Anything passed in request
+      summary: Returns anything passed in request data.
+    get:
+      operationId: getAnythingRoot
+      responses:
+        "200":
+          description: Anything passed in request
+      summary: Returns anything passed in request data.
+    patch:
+      operationId: patchAnythingRoot
+      responses:
+        "200":
+          description: Anything passed in request
+      summary: Returns anything passed in request data.
+    post:
+      operationId: postAnythingRoot
+      responses:
+        "200":
+          description: Anything passed in request
+      summary: Returns anything passed in request data.
+    put:
+      operationId: putAnythingRoot
+      responses:
+        "200":
+          description: Anything passed in request
+      summary: Returns anything passed in request data.
+    trace:
+      operationId: traceAnythingRoot
+      responses:
+        "200":
+          description: Anything passed in request
+      summary: Returns anything passed in request data.
+  /user-agent:
+    get:
+      operationId: userAgent
+      responses:
+        "200":
+          description: The request's User-Agent header.
+      summary: Return the incoming requests's User-Agent header.
+  /uuid:
+    get:
+      operationId: uuid4
+      responses:
+        "200":
+          description: A UUID4.
+      summary: Return a UUID4.
+  /xml:
+    get:
+      operationId: xml
+      responses:
+        "200":
+          description: An XML document.
+      summary: Returns a simple XML document.
+tags:
+  - name: Httpbin
+    description: This is a httpbin API
+  - name: Test
+    description: API to be used to test plugins configurations and API calls to Platform
+components:
+  requestBodies:
+    postRedirectTo:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+              status_code:
+                type: integer
+            required:
+              - url
