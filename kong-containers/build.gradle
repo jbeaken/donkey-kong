@@ -1,0 +1,58 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id "io.freefair.lombok" version "6.6"
+    id 'jacoco'
+    id 'groovy'
+}
+
+description = "APIOps - Kong Containers"
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api 'org.codehaus.groovy:groovy-json:3.0.13'
+
+    api "org.testcontainers:postgresql:1.17.6"
+    api "com.github.dasniko:testcontainers-keycloak:1.10.0"   //wildfly
+
+    implementation "ch.qos.logback:logback-classic:1.2.11"
+
+    testImplementation 'org.jsoup:jsoup:1.14.3'
+    testImplementation 'com.nimbusds:oauth2-oidc-sdk:9.43.1'
+    testImplementation 'com.auth0:java-jwt:3.19.2'
+}
+
+testing {
+    suites {
+        test {
+            useSpock('2.1-groovy-3.0')
+            targets {
+                all {
+                    testTask.configure {
+                        systemProperty 'test.include.test-containers', System.getProperty("test.include.test-containers") ?: Boolean.FALSE.toString()
+                    }
+                }
+            }
+        }
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'org.mzuri'
+            artifactId = 'donkeykong'
+            version = version
+
+            from components.java
+        }
+    }
+}
+
+
