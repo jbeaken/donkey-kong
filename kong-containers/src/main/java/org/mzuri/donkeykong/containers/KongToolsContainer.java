@@ -30,7 +30,7 @@ public class KongToolsContainer extends AbstractContainer<KongToolsContainer> {
      */
     public ExecResult executeDataplaneHttpRequest(String path, String clientId, String clientSecret) throws IOException, InterruptedException {
 
-        List<String> command = Arrays.asList("curl", "-v", "http://kong-data-plane:8000" + path);
+        List<String> command = new ArrayList<>(Arrays.asList("curl", "-v", "http://kong-data-plane:8000" + path));
 
         if(clientId == null) throw new DonkeyKongException("Client id must not be null");
         if(clientSecret == null) throw new DonkeyKongException("Client secret must not be null");

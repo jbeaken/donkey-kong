@@ -41,7 +41,7 @@ class ClientCredentialsSpec extends KeycloakSpecification {
         Thread.sleep(7000)
 
         and: "We probe dataplane api endpoint without basic authorization"
-        def executeCurlCommand = kongToolsContainer.executeDataplaneHttpRequest("/httpbin/v1", null, null)
+        def executeCurlCommand = kongToolsContainer.executeDataplaneHttpRequest("/httpbin/v1")
         def httpbinResponse = new JsonSlurper().parseText(executeCurlCommand.stdout)
 
         then: "Probe fails as basic authorization is missing"
