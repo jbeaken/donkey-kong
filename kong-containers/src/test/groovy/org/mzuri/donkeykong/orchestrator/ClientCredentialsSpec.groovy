@@ -61,14 +61,14 @@ class ClientCredentialsSpec extends KeycloakSpecification {
         and: "Token contains claim"
         def authorizationHeader = httpbinBasicAuthenticationResponse.headers['Authorization']
         def matcher = authorizationHeader =~ /Bearer (?<token>.*)$/
+        def test = matcher[0][0]
         def token = matcher.group("token")
         DecodedJWT jwt = JWT.decode(token)
         def claims = jwt.claims
         claims.size() == 18
         claims['embeddedclaim'].asString() == 'embeddedclaimvalue'
-//        def decode = Base64.decoder.decode(jwt.header)
     }
-//    "clientAuthenticatorType" : "client-jwt",
+
     private ClientRepresentation getClientRepresentation() {
         ClientRepresentation clientRepresentation = new ClientRepresentation()
         clientRepresentation.setClientId("clientId")
