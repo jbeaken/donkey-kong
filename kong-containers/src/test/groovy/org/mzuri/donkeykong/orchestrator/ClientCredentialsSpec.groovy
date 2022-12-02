@@ -61,8 +61,8 @@ class ClientCredentialsSpec extends KeycloakSpecification {
         and: "Token contains claim"
         def authorizationHeader = httpbinBasicAuthenticationResponse.headers['Authorization']
         def matcher = authorizationHeader =~ /Bearer (?<token>.*)$/
-        def test = matcher[0][0]
-        def token = matcher.group("token")
+        def test = matcher[0][0]  //why
+        def token = matcher. group("token")
         DecodedJWT jwt = JWT.decode(token)
         def claims = jwt.claims
         claims.size() == 18
