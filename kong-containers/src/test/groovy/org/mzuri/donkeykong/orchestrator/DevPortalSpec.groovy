@@ -33,9 +33,6 @@ class DevPortalSpec extends Specification {
         and: "Dev portal turned on"
         def switchOnExecResult = kongControlPlaneContainer.switchOnDevPortal()
 
-//        and: "portal deploy default"
-//        def portalDeployExecResult =  kongToolsContainer.executePortalCliCommand(PortalCommand.DEPLOY, workspace)
-
         then: "Dev portal is enabled"
         def portalConfig = kongToolsContainer.executeKongAdminApiAsJson(workspace, AdminApiCommand.PORTAL_CONFIGURATION)
         portalConfig.config.portal == true
